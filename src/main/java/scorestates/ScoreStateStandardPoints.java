@@ -22,7 +22,6 @@ public class ScoreStateStandardPoints implements ScoreState{
 		try {
 			Thread.sleep(SCORE_DELAY);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -32,6 +31,9 @@ public class ScoreStateStandardPoints implements ScoreState{
 		// we map the player's points to the tennis score
 		if(ScoreTennis.values()[player.getPoints()].equals(ScoreTennis.Win)){
 			game.setScoreState(new ScoreStateGameWon(this));
+			game.getScoreState().pointScored(player);
+			
+			
 			return;
 		}
 	}

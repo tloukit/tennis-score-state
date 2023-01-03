@@ -3,13 +3,13 @@ package entities;
 
 import scorestates.ScoreState;
 import scorestates.ScoreStateStandardPoints;
-import util.CurrentScoreMapper;
 import util.ScoreTennis;
 
 public class Game {
 
-	private /*static*/ Player[] players;
+	private Player[] players;
 	private ScoreState scoreState;
+	private Set set;
 	
 	private static final double HALF_A_SECOND = 0.5;
 	private static final int PLAYER_1 = 1;
@@ -17,16 +17,15 @@ public class Game {
 	
 	
 	public Game() {
-		players = new Player[] {new Player("player1"), new Player("player2")};
-		//Game.players[0] = new Player("player1");
-		//Game.players[1] = new Player("player2");
+		players = new Player[] {new Player("Djokovic"), new Player("Loukit")};
+		players[0].setGames(0);
+		players[1].setGames(0);
 		scoreState = new ScoreStateStandardPoints(this);
 	}
 	
 	public void pointScored(Player player) {
 		this.scoreState.pointScored(player);
 		displayScore();
-		
 	}
 	
 	public void displayScore() {
@@ -53,7 +52,14 @@ public class Game {
 	}
 	
 	public int chooseScoringPlayer() {
-		return(Math.random() < this.HALF_A_SECOND ?  PLAYER_1 : PLAYER_2);
+		return(Math.random() < HALF_A_SECOND ?  PLAYER_1 : PLAYER_2);
 	}
-	
+
+	public Set getSet() {
+		return set;
+	}
+
+	public void setSet(Set set) {
+		this.set = set;
+	}
 }

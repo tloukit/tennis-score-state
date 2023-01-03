@@ -5,6 +5,7 @@ public class Player {
 	private String playerName;
 	//private Score score;
 	private boolean isAdvantage;
+	private Integer games;
 	private int points;
 	
 	public Player(String playerName) {
@@ -34,7 +35,16 @@ public class Player {
 	public void setPoints(int points) {
 		this.points = points;
 	}
-	
-	
 
+	public Integer getGames() {
+		return games;
+	}
+
+	public void setGames(Integer games) {
+		this.games = games;
+	}
+	
+	public Integer printGames() {
+		return this.games;
+	}
 }

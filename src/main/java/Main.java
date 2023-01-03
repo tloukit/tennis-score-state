@@ -1,5 +1,6 @@
 import entities.Game;
 import entities.Player;
+import entities.Set;
 import scorestates.ScoreState;
 import scorestates.ScoreStateGameWon;
 import scorestates.ScoreStateStandardPoints;
@@ -10,16 +11,15 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Game game = new Game();
+		Set scoreInSets = new Set(game);
 		Player[] players = game.getPlayers();
 		Player player1 = players[0];
 		Player player2 = players[1];
 		
 		System.out.println("Welcome to the tennis Game: ");
 		
-		 //System.out.println(game.getScoreState().getClass().equals(ScoreStateGameWon.class));
+		int scoringPlayer = game.chooseScoringPlayer();
 		while(!game.getScoreState().getClass().equals(ScoreStateGameWon.class)) {
-			int scoringPlayer = game.chooseScoringPlayer();
-			
 			switch(scoringPlayer) 
 			{
 				case 1:
@@ -34,8 +34,11 @@ public class Main {
 					throw new IllegalArgumentException("not a valid value");
 			}
 		}
+		
 		Player gameWinner = ScoreTennis.values()[player1.getPoints()].equals(ScoreTennis.Win)? player1 : player2;
-		System.out.println( gameWinner.getPlayerName() + "Game Won the game");
+		System.out.println();
+		System.out.println( gameWinner.getPlayerName() + " Won the game");
+		System.out.println("Current score in the "  + scoreInSets.printScoreInCurrentSet());
 	}
 	
 	

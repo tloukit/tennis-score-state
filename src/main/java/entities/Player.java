@@ -3,13 +3,17 @@ package entities;
 public class Player {
 	
 	private String playerName;
-	//private Score score;
+	private int points;
 	private boolean isAdvantage;
 	private Integer games;
-	private int points;
+	private boolean isGameWinner;
 	
 	public Player(String playerName) {
 		this.playerName = playerName;
+		this.points = 0;
+		this.isAdvantage = false;
+		this.games = 0;
+		this.isGameWinner = false;
 	}
 
 	public String getPlayerName() {
@@ -46,5 +50,13 @@ public class Player {
 	
 	public Integer printGames() {
 		return this.games;
+	}
+
+	public boolean isGameWinner() {
+		return isGameWinner;
+	}
+
+	public void setGameWinner(boolean isGameWinner) {
+		this.isGameWinner = isGameWinner;
 	}
 }

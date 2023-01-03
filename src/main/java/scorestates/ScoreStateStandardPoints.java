@@ -7,7 +7,7 @@ import util.ScoreTennis;
 public class ScoreStateStandardPoints implements ScoreState{
 
 	private Game game;
-	private final static Long SCORE_DELAY = 2000L;
+	private final static Long SCORE_DELAY = 1000L;
 	
 	public ScoreStateStandardPoints(Game game) {
 		this.game = game;
@@ -30,11 +30,19 @@ public class ScoreStateStandardPoints implements ScoreState{
 	public void stateChange(Player player) {
 		// we map the player's points to the tennis score
 		if(ScoreTennis.values()[player.getPoints()].equals(ScoreTennis.Win)){
+			player.setGameWinner(true);
 			game.setScoreState(new ScoreStateGameWon(this));
 			game.getScoreState().pointScored(player);
-			
-			
 			return;
+		}
+		
+		Player[] players = game.getPlayers();
+		Player player1 = players[0];
+		Player player2 = players[1];
+		
+		if(ScoreTennis.values()[player1.getPoints()].equals(ScoreTennis.Forty) && ScoreTennis.values()[player2.getPoints()].equals(ScoreTennis.Forty)) {
+			game.setDeuce(true);
+			game.setScoreState(new ScoreStateDeuce(this));
 		}
 	}
 

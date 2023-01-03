@@ -18,8 +18,8 @@ public class Main {
 		
 		System.out.println("Welcome to the tennis Game: ");
 		
-		int scoringPlayer = game.chooseScoringPlayer();
 		while(!game.getScoreState().getClass().equals(ScoreStateGameWon.class)) {
+			int scoringPlayer = game.chooseScoringPlayer();
 			switch(scoringPlayer) 
 			{
 				case 1:
@@ -35,7 +35,7 @@ public class Main {
 			}
 		}
 		
-		Player gameWinner = ScoreTennis.values()[player1.getPoints()].equals(ScoreTennis.Win)? player1 : player2;
+		Player gameWinner = player1.isGameWinner() ? player1 : player2;
 		System.out.println();
 		System.out.println( gameWinner.getPlayerName() + " Won the game");
 		System.out.println("Current score in the "  + scoreInSets.printScoreInCurrentSet());

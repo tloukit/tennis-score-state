@@ -14,13 +14,14 @@ public class Game {
 	private static final double HALF_A_SECOND = 0.5;
 	private static final int PLAYER_1 = 1;
 	private static final int PLAYER_2 = 2;
+	public static final String DEUCE = "Deuce";
+	private boolean isDeuce;
 	
 	
 	public Game() {
 		players = new Player[] {new Player("Djokovic"), new Player("Loukit")};
-		players[0].setGames(0);
-		players[1].setGames(0);
 		scoreState = new ScoreStateStandardPoints(this);
+		this.isDeuce = false;
 	}
 	
 	public void pointScored(Player player) {
@@ -30,9 +31,21 @@ public class Game {
 	
 	public void displayScore() {
 		// retrieve the player points and map it/them  with the tennis score
-		String player1Score =  ScoreTennis.values()[players[0].getPoints()].toString();
-		String player2Score =  ScoreTennis.values()[players[1].getPoints()].toString();
-		System.out.println(players[0].getPlayerName() + " " + player1Score + " " + players[1].getPlayerName() + " " + player2Score);
+		Player player1 = players[0];
+		Player player2 = players[1];
+		String player1Score =  ScoreTennis.values()[player1.getPoints()].toString();
+		String player2Score =  ScoreTennis.values()[player2.getPoints()].toString();
+		
+		if(isDeuce) {
+			System.out.println(DEUCE);
+		}
+		else if(player1.isAdvantage() || player2.isAdvantage()) {
+			String playerAdvantage = player1.isAdvantage() ? "Advantage " + player1.getPlayerName() : "Advantage " + player1.getPlayerName();
+			System.out.println(playerAdvantage);
+		}
+		else if(!players[0].isGameWinner() && !players[1].isGameWinner()){
+			System.out.println(players[0].getPlayerName() + " " + player1Score + " " + players[1].getPlayerName() + " " + player2Score);
+		}
 	}
 
 	public Player[] getPlayers() {
@@ -51,6 +64,14 @@ public class Game {
 		this.scoreState = scoreState;
 	}
 	
+	public boolean isDeuce() {
+		return isDeuce;
+	}
+
+	public void setDeuce(boolean isDeuce) {
+		this.isDeuce = isDeuce;
+	}
+
 	public int chooseScoringPlayer() {
 		return(Math.random() < HALF_A_SECOND ?  PLAYER_1 : PLAYER_2);
 	}

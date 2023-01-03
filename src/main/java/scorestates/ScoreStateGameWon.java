@@ -9,10 +9,7 @@ public class ScoreStateGameWon implements ScoreState {
 	private Game game;
 	private Set set;
 	
-	
-	
-	
-public ScoreStateGameWon(Game game) {
+	public ScoreStateGameWon(Game game) {
 	this.game = game;	
 	}
 	
@@ -22,15 +19,14 @@ public ScoreStateGameWon(Game game) {
 
 	@Override
 	public void pointScored(Player player) {
-	//boolean isSetOver = isSetOver(player);
+	int games = player.getGames() + 1;
+	player.setGames(games);
 	stateChange(player);
 	
 	}
 
 	@Override
 	public void stateChange(Player player) {
-		int games = player.getGames() + 1;
-		player.setGames(games);
 		
 	}
 
@@ -41,11 +37,6 @@ public ScoreStateGameWon(Game game) {
 	public void setGame(Game game) {
 		this.game = game;
 	}
-	
-	/*private boolean isSetOver(Player player) {
-		boolean isSetOver = false;
-		return isSetOver;
-	}*/
 	
 	private void incrementGamesInSet() {
 		

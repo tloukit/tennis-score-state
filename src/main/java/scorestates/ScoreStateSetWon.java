@@ -2,7 +2,6 @@ package scorestates;
 
 import entities.Game;
 import entities.Player;
-import entities.Set;
 
 public class ScoreStateSetWon implements ScoreState{
 	private Game game;
@@ -18,8 +17,7 @@ public class ScoreStateSetWon implements ScoreState{
 
 	@Override
 	public void pointScored(Player player) {
-		Set tennisSet = game.getSet();
-		tennisSet.setEndOfSet(true);
+		
 		return;
 	}
 

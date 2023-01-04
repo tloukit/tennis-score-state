@@ -28,7 +28,6 @@ public class ScoreStateStandardPoints implements ScoreState{
 			player.setGames(games);
 			player.setGameWinner(true);
 			game.setScoreState(new ScoreStateGameWon(this));
-			//game.getScoreState().pointScored(player);
 		}
 		
 		Player[] players = game.getPlayers();

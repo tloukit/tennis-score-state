@@ -45,12 +45,12 @@ public class Game {
 			System.out.println(playerAdvantage);
 		}
 		// case: regular points  
-		else if(!players[0].isGameWinner() && !players[1].isGameWinner()){
+		else if(!players[0].isGameWinner() && !players[1].isGameWinner() && !this.set.isEndOfSet()){
 			String player1Score =  ScoreTennis.values()[player1.getPoints()].toString();
 			String player2Score =  ScoreTennis.values()[player2.getPoints()].toString();
 			System.out.println(players[0].getPlayerName() + " " + player1Score + " " + players[1].getPlayerName() + " " + player2Score);
 		}
-		else if(players[0].isGameWinner() || players[1].isGameWinner()) {
+		else if(players[0].isGameWinner() || players[1].isGameWinner() && !this.set.isEndOfSet()) {
 			System.out.println("          "+this.set.printScoreInCurrentSet());
 			System.out.println();
 			this.players[0].setGameWinner(false);

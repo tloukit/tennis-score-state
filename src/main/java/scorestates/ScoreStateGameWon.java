@@ -37,13 +37,18 @@ public class ScoreStateGameWon implements ScoreState {
 		
 		//If a player reach the Set score of 6 and the other player has a Set score of 4 or lower, the player win the Set
 		if( (gamesPlayer1 == 6  && gamesPlayer2 <= 4) || (gamesPlayer2 == 6  && gamesPlayer1 <= 4) ) {
-			game.resetGamePointsPlayers();
+			setEndOfSet(game);
 			game.setScoreState(new ScoreStateSetWon(this));
 		}
 		//If a player wins a Game and reach the Set score of 6 
 		//and the other player has a Set score of 5, a new Game must be played and the first player who reach the score of 7 wins the match
 		else if( (gamesPlayer1 == 6  && gamesPlayer2 == 5) || (gamesPlayer2 == 6  && gamesPlayer1 == 5) ) {
-				game.setScoreState(new ScoreStateGameToSeven(this));
+				game.resetGamePointsPlayers();
+				game.setScoreState(new ScoreStateStandardPoints(game));
+		}
+		else if(gamesPlayer1 == 7  || gamesPlayer2 == 7){
+			setEndOfSet(game);
+			game.setScoreState(new ScoreStateSetWon(this));
 		}
 		else {
 			game.resetGamePointsPlayers();
@@ -51,6 +56,11 @@ public class ScoreStateGameWon implements ScoreState {
 		}
 	}
 
+	private void setEndOfSet(Game game) {
+		game.resetGamePointsPlayers();
+		game.getSet().setEndOfSet(true);
+		
+	}
 	public Game getGame() {
 		return game;
 	}

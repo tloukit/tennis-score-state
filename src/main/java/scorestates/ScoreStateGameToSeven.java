@@ -30,10 +30,15 @@ public class ScoreStateGameToSeven implements ScoreState{
 
 	@Override
 	public void stateChange(Player player) {
-		if(player.getGames().intValue() == 7) {
+		/*if(player.getGames().intValue() == 7 ) {
 			game.resetGamePointsPlayers();
 			game.setScoreState(new ScoreStateSetWon(this));
 		}
+		else if(player.getGames() == 6){
+			game.resetGamePointsPlayers();
+			game.setScoreState(new ScoreStateStandardPoints(game));
+			
+		}*/
 	}
 
 }

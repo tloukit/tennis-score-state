@@ -8,13 +8,14 @@ public class Set {
 	private Integer currentSetNumber;
 	private ScoreState scoreState;
 	private Game game;
+	private boolean isEndOfSet;
 	
 	public Set(Game game) {
 		// initialize the tennis set format. Possibly 3 sets match with 3 values in each set 
 		// => eg. : [ [6-3], [3-6] , [7-6] ]; or [ [6-3], [6-4] , [null-null] ];
-		this.scoreInSets = new Integer[3][3];
 		this.currentSetNumber = 1;
 		this.game = game;
+		this.isEndOfSet = false;
 	}
 	public void gamesScored(Player player) {
 		this.scoreState.pointScored(player);
@@ -30,14 +31,6 @@ public class Set {
 		this.players = players;
 	}
 
-	public Integer[][] getScoreInSets() {
-		return scoreInSets;
-	}
-
-	public void setScoreInSets(Integer[][] scoreInSets) {
-		this.scoreInSets = scoreInSets;
-	}
-
 	public int getCurrentSetNumber() {
 		return currentSetNumber;
 	}
@@ -46,8 +39,6 @@ public class Set {
 		this.currentSetNumber = currentSetNumber;
 	}
 	
-	
-	
 	public ScoreState getScoreState() {
 		return scoreState;
 	}
@@ -55,9 +46,15 @@ public class Set {
 		this.scoreState = scoreState;
 	}
 	
+	public boolean isEndOfSet() {
+		return isEndOfSet;
+	}
+	public void setEndOfSet(boolean isEndOfSet) {
+		this.isEndOfSet = isEndOfSet;
+	}
 	public String printScoreInCurrentSet() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(printCurrentSet());
+		//sb.append(printCurrentSet());
 		players = game.getPlayers();
 		Player player1 = players[0];
 		Player player2 = players[1];

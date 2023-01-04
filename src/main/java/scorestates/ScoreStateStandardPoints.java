@@ -18,22 +18,17 @@ public class ScoreStateStandardPoints implements ScoreState{
 		int points = player.getPoints() + 1;
 		player.setPoints(points);
 		stateChange(player);
-		
-		try {
-			Thread.sleep(SCORE_DELAY);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@Override
 	public void stateChange(Player player) {
 		// we map the player's points to the tennis score
 		if(ScoreTennis.values()[player.getPoints()].equals(ScoreTennis.Win)){
+			int games = player.getGames() + 1;
+			player.setGames(games);
 			player.setGameWinner(true);
 			game.setScoreState(new ScoreStateGameWon(this));
-			game.getScoreState().pointScored(player);
-			return;
+			//game.getScoreState().pointScored(player);
 		}
 		
 		Player[] players = game.getPlayers();

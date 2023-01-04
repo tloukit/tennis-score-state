@@ -46,7 +46,7 @@ public class ScoreStateAdvantage implements  ScoreState{
 			game.setScoreState(new ScoreStateGameWon(this));
 		}
 		else {
-			game.setDeuce(true);
+		game.setDeuce(true);
 			game.setScoreState(new ScoreStateDeuce(this));
 			
 		}

@@ -2,6 +2,7 @@ package scorestates;
 
 import entities.Game;
 import entities.Player;
+import entities.TieBreak;
 
 public class ScoreStateGameToSeven implements ScoreState{
 
@@ -39,6 +40,12 @@ public class ScoreStateGameToSeven implements ScoreState{
 			game.setScoreState(new ScoreStateStandardPoints(game));
 			
 		}*/
+	}
+
+	@Override
+	public TieBreak getTieBreak() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

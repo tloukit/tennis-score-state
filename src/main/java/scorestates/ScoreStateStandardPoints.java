@@ -2,6 +2,7 @@ package scorestates;
 
 import entities.Game;
 import entities.Player;
+import entities.TieBreak;
 import util.ScoreTennis;
 
 public class ScoreStateStandardPoints implements ScoreState{
@@ -47,6 +48,12 @@ public class ScoreStateStandardPoints implements ScoreState{
 
 	public void setGame(Game game) {
 		this.game = game;
+	}
+
+	@Override
+	public TieBreak getTieBreak() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -3,6 +3,7 @@ package scorestates;
 import entities.Game;
 import entities.Player;
 import entities.Set;
+import entities.TieBreak;
 
 public class ScoreStateGameWon implements ScoreState {
 	
@@ -37,6 +38,7 @@ public class ScoreStateGameWon implements ScoreState {
 		
 		//If a player reach the Set score of 6 and the other player has a Set score of 4 or lower, the player win the Set
 		if( (gamesPlayer1 == 6  && gamesPlayer2 <= 4) || (gamesPlayer2 == 6  && gamesPlayer1 <= 4) ) {
+			player.setSetWinner(true);
 			setEndOfSet(game);
 			game.setScoreState(new ScoreStateSetWon(this));
 		}
@@ -46,9 +48,15 @@ public class ScoreStateGameWon implements ScoreState {
 				game.resetGamePointsPlayers();
 				game.setScoreState(new ScoreStateStandardPoints(game));
 		}
-		else if(gamesPlayer1 == 7  || gamesPlayer2 == 7){
+		else if( (gamesPlayer1 == 7 && players[0].getGames() - players[1].getGames() == 2) 
+						|| (gamesPlayer2 == 7) && players[1].getGames() - players[0].getGames() == 2){
+			player.setSetWinner(true);
 			setEndOfSet(game);
 			game.setScoreState(new ScoreStateSetWon(this));
+		}
+		else if(gamesPlayer1 == 6  && gamesPlayer2 == 6) {
+			game.resetGamePointsPlayers();
+			game.setScoreState(new ScoreStateTieBreak(this));
 		}
 		else {
 			game.resetGamePointsPlayers();
@@ -67,5 +75,11 @@ public class ScoreStateGameWon implements ScoreState {
 
 	public void setGame(Game game) {
 		this.game = game;
+	}
+
+	@Override
+	public TieBreak getTieBreak() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

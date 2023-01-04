@@ -7,6 +7,8 @@ public class Player {
 	private boolean isAdvantage;
 	private Integer games;
 	private boolean isGameWinner;
+	private boolean isTieBreakWinner;
+	private boolean isSetWinner;
 	
 	public Player(String playerName) {
 		this.playerName = playerName;
@@ -58,5 +60,21 @@ public class Player {
 
 	public void setGameWinner(boolean isGameWinner) {
 		this.isGameWinner = isGameWinner;
+	}
+
+	public boolean isTieBreakWinner() {
+		return isTieBreakWinner;
+	}
+
+	public void setTieBreakWinner(boolean isTieBreakWinner) {
+		this.isTieBreakWinner = isTieBreakWinner;
+	}
+
+	public boolean isSetWinner() {
+		return isSetWinner;
+	}
+
+	public void setSetWinner(boolean isSetWinner) {
+		this.isSetWinner = isSetWinner;
 	}
 }

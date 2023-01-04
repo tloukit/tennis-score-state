@@ -2,6 +2,7 @@ package scorestates;
 
 import entities.Game;
 import entities.Player;
+import entities.TieBreak;
 
 public class ScoreStateDeuce implements ScoreState{
 	
@@ -38,6 +39,12 @@ public class ScoreStateDeuce implements ScoreState{
 	public void stateChange(Player player) {
 		game.setDeuce(false);
 		game.setScoreState(new ScoreStateAdvantage(this));
+	}
+
+	@Override
+	public TieBreak getTieBreak() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

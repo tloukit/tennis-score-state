@@ -2,6 +2,7 @@ package scorestates;
 
 import entities.Game;
 import entities.Player;
+import entities.TieBreak;
 
 public class ScoreStateSetWon implements ScoreState{
 	private Game game;
@@ -17,7 +18,6 @@ public class ScoreStateSetWon implements ScoreState{
 
 	@Override
 	public void pointScored(Player player) {
-		
 		return;
 	}
 
@@ -25,6 +25,12 @@ public class ScoreStateSetWon implements ScoreState{
 	public void stateChange(Player player) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public TieBreak getTieBreak() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

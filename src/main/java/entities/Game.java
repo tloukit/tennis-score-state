@@ -16,6 +16,7 @@ public class Game {
 	private static final int PLAYER_2 = 2;
 	public static final String DEUCE = "Deuce";
 	private boolean isDeuce;
+	private boolean isTiebreak;
 	
 	
 	public Game() {
@@ -90,6 +91,14 @@ public class Game {
 	public void resetGamePointsPlayers() {
 	this.players[0].setPoints(0);
 	this.players[1].setPoints(0);
+	}
+	
+	public boolean isTiebreak() {
+		return isTiebreak;
+	}
+
+	public void setTiebreak(boolean isTiebreak) {
+		this.isTiebreak = isTiebreak;
 	}
 
 	public Set getSet() {

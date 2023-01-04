@@ -19,7 +19,6 @@ public class Set {
 	}
 	public void gamesScored(Player player) {
 		this.scoreState.pointScored(player);
-		//displayScore();
 	}
 	
 	

@@ -2,6 +2,7 @@ package scorestates;
 
 import entities.Game;
 import entities.Player;
+import entities.TieBreak;
 
 public class ScoreStateAdvantage implements  ScoreState{
 
@@ -62,5 +63,11 @@ public class ScoreStateAdvantage implements  ScoreState{
 
 	public void setGame(Game game) {
 		this.game = game;
+	}
+
+	@Override
+	public TieBreak getTieBreak() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

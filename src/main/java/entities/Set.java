@@ -65,16 +65,16 @@ public class Set {
 	}
 	
 	public void printScoreInCurrentSet() {
-		System.out.println("             " + player1.getPlayerName() + " " + player1.getGames() + " - " + player2.getPlayerName()  + " " + player2.getGames());
+		System.out.println("             " + player1.toString() + " " + player1.getGames() + " - " + player2.toString()  + " " + player2.getGames());
 	}
 	
 	public void printFinalSetScore() {
 		System.out.println();
 		if(game.isTiebreak()) {
-			System.out.println(player1.isTieBreakWinner() ? player1.getPlayerName() + " wins the tie break and the set 7 - 6" : player2.getPlayerName() + " wins the tie break and the set 7 - 6");
+			System.out.println(player1.isTieBreakWinner() ? player1.toString() + " wins the tie break and the set 7 - 6" : player2.toString() + " wins the tie break and the set 7 - 6");
 		}
 		else if(this.isEndOfSet()) {
-			System.out.println(player1.isSetWinner() ? player1.getPlayerName() + " wins the set " : player2.getPlayerName() + " wins the set ");
+			System.out.println(player1.isSetWinner() ? player1.toString() + " wins the set " : player2.toString() + " wins the set ");
 			System.out.println("Final set score is : "  + player1.getGames().toString() + " - " + player2.getGames().toString());
 		}
 	}

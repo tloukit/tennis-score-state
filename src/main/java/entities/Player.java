@@ -1,5 +1,7 @@
 package entities;
 
+import util.Score;
+
 public class Player {
 	
 	private String playerName;
@@ -12,9 +14,9 @@ public class Player {
 	
 	public Player(String playerName) {
 		this.playerName = playerName;
-		this.points = 0;
+		this.points = Score.ZERO;
 		this.isAdvantage = false;
-		this.games = 0;
+		this.games = Score.ZERO;
 		this.isGameWinner = false;
 	}
 
@@ -77,4 +79,10 @@ public class Player {
 	public void setSetWinner(boolean isSetWinner) {
 		this.isSetWinner = isSetWinner;
 	}
+	
+	@Override
+	public String toString() {
+		return this.playerName;
+	}
+	
 }

@@ -3,6 +3,7 @@ package scorestates;
 import entities.Game;
 import entities.Player;
 import entities.TieBreak;
+import util.Score;
 
 public class ScoreStateTieBreak implements ScoreState{
 	private Game game;
@@ -21,7 +22,7 @@ public class ScoreStateTieBreak implements ScoreState{
 
 	@Override
 	public void pointScored(Player player) {
-		int points = player.getPoints() + 1;
+		int points = player.getPoints() + Score.ONE;
 		player.setPoints(points);
 		stateChange(player);
 	}
@@ -32,16 +33,19 @@ public class ScoreStateTieBreak implements ScoreState{
 		Player player1 = players[0];
 		Player player2 = players[1];
 		
-		if(player1.equals(player) && player.getPoints() >= 7 && player1.getPoints() - player2.getPoints() >= 2) {
+		if(player1.equals(player) && player.getPoints() >= Score.SEVEN 
+				&& player1.getPoints() - player2.getPoints() >= Score.TWO) {
+			
 				tieBreak.getPlayers()[0].setTieBreakWinner(true);
 				tieBreak.setScoreState(new ScoreStateSetWon(this));
 		}
-		else if(player2.getPoints() >= 7 && player2.getPoints() - player1.getPoints() >= 2){
-			tieBreak.getPlayers()[1].setTieBreakWinner(true);
+		else if(player2.getPoints() >= Score.SEVEN && player2.getPoints() - player1.getPoints() >= Score.TWO){
+			
+				tieBreak.getPlayers()[1].setTieBreakWinner(true);
 				tieBreak.setScoreState(new ScoreStateSetWon(this));
 		}
 		else {
-			tieBreak.setScoreState(new ScoreStateTieBreak(tieBreak));
+				tieBreak.setScoreState(new ScoreStateTieBreak(tieBreak));
 		}
 	}
 

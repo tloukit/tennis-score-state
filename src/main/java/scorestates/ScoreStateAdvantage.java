@@ -3,6 +3,7 @@ package scorestates;
 import entities.Game;
 import entities.Player;
 import entities.TieBreak;
+import util.Score;
 
 public class ScoreStateAdvantage implements  ScoreState{
 
@@ -28,7 +29,7 @@ public class ScoreStateAdvantage implements  ScoreState{
 		//Player[] players = game.getPlayers();
 		// case when the player who has just scored a point and had already the "advantage"
 		if(player.isAdvantage()) {
-			int games = player.getGames() + 1;
+			int games = player.getGames() + Score.ONE;
 			player.setGames(games);
 			player.setGameWinner(true);
 			stateChange(player);

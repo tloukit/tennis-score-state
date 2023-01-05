@@ -30,8 +30,8 @@ public class TieBreak {
 	}
 	
 	public void displayScore() {
-		System.out.println("Tie Break : " + players[0].getPlayerName() + " "+ players[0].getPoints());
-		System.out.println("Tie Break : " + players[1].getPlayerName() + " "+ players[1].getPoints());
+		System.out.println("Tie Break : " + players[0].toString() + " "+ players[0].getPoints());
+		System.out.println("Tie Break : " + players[1].toString() + " "+ players[1].getPoints());
 		
 	}
 	

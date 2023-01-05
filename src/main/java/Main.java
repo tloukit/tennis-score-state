@@ -7,7 +7,7 @@ import scorestates.ScoreStateGameWon;
 import scorestates.ScoreStateSetWon;
 import scorestates.ScoreStateStandardPoints;
 import scorestates.ScoreStateTieBreak;
-import util.ScoreTennis;
+import util.ScoreTennisPoints;
 
 public class Main {
 	

@@ -4,7 +4,7 @@ package entities;
 import scorestates.ScoreState;
 import scorestates.ScoreStateStandardPoints;
 import scorestates.ScoreStateTieBreak;
-import util.ScoreTennis;
+import util.ScoreTennisPoints;
 
 public class Game {
 
@@ -46,15 +46,16 @@ public class Game {
 			}
 			// case: when one of both players has Advantage
 			else if(player1.isAdvantage() || player2.isAdvantage()) {
-				String playerAdvantage = player1.isAdvantage() ? "Advantage " + player1.getPlayerName() : "Advantage " + player2.getPlayerName();
+				String playerAdvantage = player1.isAdvantage() ? "Advantage " + player1.toString() : "Advantage " + player2.toString();
 				System.out.println(playerAdvantage);
 			}
 			// case: regular points  
 			else if(!players[0].isGameWinner() && !players[1].isGameWinner() && !this.set.isEndOfSet()){
-				String player1Score =  ScoreTennis.values()[player1.getPoints()].toString();
-				String player2Score =  ScoreTennis.values()[player2.getPoints()].toString();
-				System.out.println(players[0].getPlayerName() + " " + player1Score + " " + players[1].getPlayerName() + " " + player2Score);
+				String player1Score =  ScoreTennisPoints.values()[player1.getPoints()].toString();
+				String player2Score =  ScoreTennisPoints.values()[player2.getPoints()].toString();
+				System.out.println(players[0].toString() + " " + player1Score + " " + players[1].toString() + " " + player2Score);
 			}
+			//case : player wins a game but not the set
 			else if(players[0].isGameWinner() || players[1].isGameWinner() && !this.set.isEndOfSet()) {
 				this.set.printScoreInCurrentSet();
 				System.out.println();

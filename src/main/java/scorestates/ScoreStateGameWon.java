@@ -2,8 +2,8 @@ package scorestates;
 
 import entities.Game;
 import entities.Player;
-import entities.Set;
 import entities.TieBreak;
+import util.Score;
 
 public class ScoreStateGameWon implements ScoreState {
 	
@@ -38,7 +38,8 @@ public class ScoreStateGameWon implements ScoreState {
 		int gamesPlayer2 = players[1].getGames();
 		
 		//If a player reach the Set score of 6 and the other player has a Set score of 4 or lower, the player win the Set
-		if( (gamesPlayer1 == 6  && gamesPlayer2 <= 4) || (gamesPlayer2 == 6  && gamesPlayer1 <= 4) ) {
+		if( (gamesPlayer1 == Score.SIX  && gamesPlayer2 <= Score.FOUR) 
+					|| (gamesPlayer2 == Score.SIX  && gamesPlayer1 <= Score.FOUR) ) {
 			setWinner(gamesPlayer1, gamesPlayer2, players);
 			setEndOfSet(game);
 			
@@ -46,19 +47,20 @@ public class ScoreStateGameWon implements ScoreState {
 		}
 		//If a player wins a Game and reach the Set score of 6 
 		//and the other player has a Set score of 5, a new Game must be played and the first player who reach the score of 7 wins the match
-		else if( (gamesPlayer1 == 6  && gamesPlayer2 == 5) || (gamesPlayer2 == 6  && gamesPlayer1 == 5) ) {
+		else if( (gamesPlayer1 == Score.SIX  && gamesPlayer2 == Score.FIVE) 
+				|| (gamesPlayer2 == Score.SIX && gamesPlayer1 == Score.FIVE) ) {
 				game.resetGamePointsPlayers();
 				game.setScoreState(new ScoreStateStandardPoints(game));
 		}
 		// when a player reaches 7 games he wins the set
-		else if( (gamesPlayer1 == 7 && players[0].getGames() - players[1].getGames() == 2) 
-						|| (gamesPlayer2 == 7) && players[1].getGames() - players[0].getGames() == 2){
+		else if( (gamesPlayer1 == Score.SEVEN && players[0].getGames() - players[1].getGames() == Score.TWO) 
+						|| (gamesPlayer2 == Score.SEVEN) && players[1].getGames() - players[0].getGames() == Score.TWO){
 			setWinner(gamesPlayer1, gamesPlayer2, players);
 			setEndOfSet(game);
 			game.setScoreState(new ScoreStateSetWon(this));
 		}
 		// 6 games to 6 leads to Tie break rule
-		else if(gamesPlayer1 == 6  && gamesPlayer2 == 6) {
+		else if(gamesPlayer1 == Score.SIX  && gamesPlayer2 == Score.SIX) {
 			game.resetGamePointsPlayers();
 			game.setTiebreak(true);
 			game.setScoreState(new ScoreStateTieBreak(this));
@@ -76,7 +78,7 @@ public class ScoreStateGameWon implements ScoreState {
 		
 	}
 	private void setWinner(int gamesPlayer1, int gamesPLayer2, Player[] players) {
-		if(gamesPlayer1 == 6 || gamesPlayer1 == 7) {
+		if(gamesPlayer1 == Score.SIX || gamesPlayer1 == Score.SEVEN) {
 			players[0].setSetWinner(true);
 		}
 		else {

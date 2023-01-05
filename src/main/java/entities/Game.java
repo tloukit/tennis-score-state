@@ -3,6 +3,7 @@ package entities;
 
 import scorestates.ScoreState;
 import scorestates.ScoreStateStandardPoints;
+import scorestates.ScoreStateTieBreak;
 import util.ScoreTennis;
 
 public class Game {
@@ -24,6 +25,7 @@ public class Game {
 		scoreState = new ScoreStateStandardPoints(this);
 		this.isDeuce = false;
 		this.set = new Set(this);
+		this.isTiebreak = false;
 	}
 	
 	public void pointScored(Player player) {
@@ -36,27 +38,30 @@ public class Game {
 		Player player1 = players[0];
 		Player player2 = players[1];
 		
-		// case: 40/40 called Deuce
-		if(isDeuce) {
-			System.out.println(DEUCE);
-		}
-		// case: when one of both players has Advantage
-		else if(player1.isAdvantage() || player2.isAdvantage()) {
-			String playerAdvantage = player1.isAdvantage() ? "Advantage " + player1.getPlayerName() : "Advantage " + player2.getPlayerName();
-			System.out.println(playerAdvantage);
-		}
-		// case: regular points  
-		else if(!players[0].isGameWinner() && !players[1].isGameWinner() && !this.set.isEndOfSet()){
-			String player1Score =  ScoreTennis.values()[player1.getPoints()].toString();
-			String player2Score =  ScoreTennis.values()[player2.getPoints()].toString();
-			System.out.println(players[0].getPlayerName() + " " + player1Score + " " + players[1].getPlayerName() + " " + player2Score);
-		}
-		else if(players[0].isGameWinner() || players[1].isGameWinner() && !this.set.isEndOfSet()) {
-			System.out.println("          "+this.set.printScoreInCurrentSet());
-			System.out.println();
-			this.players[0].setGameWinner(false);
-			this.players[1].setGameWinner(false);
+		if(!this.scoreState.getClass().equals(ScoreStateTieBreak.class)) {
 			
+			// case: 40/40 called Deuce
+			if(isDeuce) {
+				System.out.println(DEUCE);
+			}
+			// case: when one of both players has Advantage
+			else if(player1.isAdvantage() || player2.isAdvantage()) {
+				String playerAdvantage = player1.isAdvantage() ? "Advantage " + player1.getPlayerName() : "Advantage " + player2.getPlayerName();
+				System.out.println(playerAdvantage);
+			}
+			// case: regular points  
+			else if(!players[0].isGameWinner() && !players[1].isGameWinner() && !this.set.isEndOfSet()){
+				String player1Score =  ScoreTennis.values()[player1.getPoints()].toString();
+				String player2Score =  ScoreTennis.values()[player2.getPoints()].toString();
+				System.out.println(players[0].getPlayerName() + " " + player1Score + " " + players[1].getPlayerName() + " " + player2Score);
+			}
+			else if(players[0].isGameWinner() || players[1].isGameWinner() && !this.set.isEndOfSet()) {
+				this.set.printScoreInCurrentSet();
+				System.out.println();
+				this.players[0].setGameWinner(false);
+				this.players[1].setGameWinner(false);
+				
+			}
 		}
 	}
 

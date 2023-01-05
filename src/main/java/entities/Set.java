@@ -4,18 +4,21 @@ import scorestates.ScoreState;
 
 public class Set {
 	private Player[] players;
-	private Integer[][] scoreInSets;
+	private Player player1;
+	private Player player2;
 	private Integer currentSetNumber;
 	private ScoreState scoreState;
 	private Game game;
 	private boolean isEndOfSet;
+	private Integer finalSetScore;
 	
 	public Set(Game game) {
-		// initialize the tennis set format. Possibly 3 sets match with 3 values in each set 
-		// => eg. : [ [6-3], [3-6] , [7-6] ]; or [ [6-3], [6-4] , [null-null] ];
-		this.currentSetNumber = 1;
 		this.game = game;
 		this.isEndOfSet = false;
+		this.players = game.getPlayers();
+		player1 = this.players[0];
+		player2 = this.players[1];
+		
 	}
 	public void gamesScored(Player player) {
 		this.scoreState.pointScored(player);
@@ -25,11 +28,12 @@ public class Set {
 	public Player[] getPlayers() {
 		return players;
 	}
-
-	public void setPlayers(Player[] players) {
-		this.players = players;
+	public Player getPlayer1() {
+		return player1;
 	}
-
+	public Player getPlayer2() {
+		return player2;
+	}
 	public int getCurrentSetNumber() {
 		return currentSetNumber;
 	}
@@ -51,24 +55,28 @@ public class Set {
 	public void setEndOfSet(boolean isEndOfSet) {
 		this.isEndOfSet = isEndOfSet;
 	}
-	public String printScoreInCurrentSet() {
-		StringBuilder sb = new StringBuilder();
-		//sb.append(printCurrentSet());
-		players = game.getPlayers();
-		Player player1 = players[0];
-		Player player2 = players[1];
-		sb.append( player1.getPlayerName() + " " + player1.getGames() + " - " + player2.getPlayerName()  + " " + player2.getGames());
-		
-		return sb.toString();
+	
+	public Integer getFinalSetScore() {
+		return finalSetScore;
 	}
 	
-	private String printCurrentSet() {
-		switch (this.currentSetNumber) {
-			case 1 : return "1st set:  ";
-			default:
-				return "";
+	public void setFinalSetScore(Integer finalSetScore) {
+		this.finalSetScore = finalSetScore;
+	}
+	
+	public void printScoreInCurrentSet() {
+		System.out.println("             " + player1.getPlayerName() + " " + player1.getGames() + " - " + player2.getPlayerName()  + " " + player2.getGames());
+	}
+	
+	public void printFinalSetScore() {
+		System.out.println();
+		if(game.isTiebreak()) {
+			System.out.println(player1.isTieBreakWinner() ? player1.getPlayerName() + " wins the tie break and the set 7 - 6" : player2.getPlayerName() + " wins the tie break and the set 7 - 6");
 		}
-		
+		else if(this.isEndOfSet()) {
+			System.out.println(player1.isSetWinner() ? player1.getPlayerName() + " wins the set " : player2.getPlayerName() + " wins the set ");
+			System.out.println("Final set score is : "  + player1.getGames().toString() + " - " + player2.getGames().toString());
+		}
 	}
 
 }

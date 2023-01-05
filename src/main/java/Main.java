@@ -14,7 +14,6 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Game game = new Game();
-		//Set scoreInSets = new Set(game);
 		Player[] players = game.getPlayers();
 		Player player1 = players[0];
 		Player player2 = players[1];
@@ -29,7 +28,7 @@ public class Main {
 				
 		while(!game.getScoreState().getClass().equals(ScoreStateSetWon.class)  && !tieBreak.getScoreState().getClass().equals(ScoreStateSetWon.class)) {
 			
-			while(!game.getScoreState().getClass().equals(ScoreStateSetWon.class)) {
+			while(!game.getScoreState().getClass().equals(ScoreStateSetWon.class) && !game.getScoreState().getClass().equals(ScoreStateTieBreak.class)) {
 				
 				int scoringPlayer = game.chooseScoringPlayer();
 				switch(scoringPlayer) 
@@ -46,31 +45,26 @@ public class Main {
 					throw new IllegalArgumentException("not a valid value");
 				}
 			}
-			
-			
-			int scoringPlayer = tieBreak.chooseScoringPlayer();
-			
-			switch(scoringPlayer) 
-			{
-			case 1:
-				tieBreak.pointScored(playerTieBreak1);
-				break;
-				
-			case 2:
-				tieBreak.pointScored(playerTieBreak2);
-				break;
-				
-			default:
-				throw new IllegalArgumentException("not a valid value");
-			}
+				if(game.isTiebreak()) {
+					int scoringPlayer = tieBreak.chooseScoringPlayer();
+					
+					switch(scoringPlayer) 
+					{
+					case 1:
+						tieBreak.pointScored(playerTieBreak1);
+						break;
+						
+					case 2:
+						tieBreak.pointScored(playerTieBreak2);
+						break;
+						
+					default:
+						throw new IllegalArgumentException("not a valid value");
+					}
+					
+				}
 		}
-		if(tieBreak.getScoreState().getClass().equals(ScoreStateSetWon.class)) {
-			System.out.println(tieBreak.getPlayers()[0].isTieBreakWinner() ? playerTieBreak1.getPlayerName() + " wins the tie break and the set" : playerTieBreak2.getPlayerName() + " wins the tie break and the set");
-			
-		}
-		else if(game.getScoreState().getClass().equals(ScoreStateSetWon.class)) {
-			System.out.println(player1.isSetWinner() ? player1.getPlayerName() + " wins the set " : player2.getPlayerName() + " wins the set ");
-		}
+		game.getSet().printFinalSetScore();
 	}
 	
 	

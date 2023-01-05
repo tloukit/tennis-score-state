@@ -14,7 +14,8 @@ public class ScoreStateTieBreak implements ScoreState{
 	}
 	
 	public ScoreStateTieBreak (ScoreState scoreState) {
-		this.tieBreak = scoreState.getTieBreak();
+		game = scoreState.getGame();
+		return;
 	}
 	
 

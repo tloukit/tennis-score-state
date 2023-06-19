@@ -6,3 +6,4 @@ The score is displayed in the program console (eg. Eclipse  or IntelliJ console)
 Run the program in the class named "Main" -> Run As/ Java Application
 
 TODO: Unit tests
+TODO : code refactoring
